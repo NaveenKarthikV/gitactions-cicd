@@ -8,4 +8,8 @@ jobs:
         run: echo "Hello World!"
       - name: Print goodbye
         run: echo "Done -bye!"
-      
+      - name: Run a multi-line script
+        run: |
+         echo Add other actions to build,
+         echo test, and deploy your project.
+
