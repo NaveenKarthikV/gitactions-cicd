@@ -3,7 +3,7 @@ name: Compare and Commit
 on:
   push:
     branches:
-      - other-branch
+      - main
 permissions:
  id-token: write
  contents: write
@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Fetch other branch
-      run: git fetch origin other-branch:other-branch
+      run: git fetch origin main:other-branch
 
     - name: List changed files
       id: file_list
