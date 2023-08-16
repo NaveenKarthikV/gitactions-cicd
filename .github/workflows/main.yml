@@ -1,8 +1,9 @@
 name: Compare and Commit
+
 on:
   push:
     branches:
-      - main
+      - other-branch
 permissions:
  id-token: write
  contents: write
@@ -17,7 +18,7 @@ permissions:
  repository-projects: write
  security-events: write
  statuses: write
- 
+
 jobs:
   compare_and_commit:
     runs-on: ubuntu-latest
