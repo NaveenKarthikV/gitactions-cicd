@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Fetch other branch
-      run: git fetch origin main:other-branch
+      run: git fetch origin other-branch:other-branch
 
     - name: List changed files
       id: file_list
