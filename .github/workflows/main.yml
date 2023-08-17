@@ -3,7 +3,7 @@ name: Compare and Commit
 on:
   push:
     branches:
-      - other-branch
+      - main
 permissions:
  id-token: write
  contents: write
