@@ -1,9 +1,9 @@
 import os
 import shutil
 
-def compare_and_update(new_branch_folder, main_branch_folder):
-    for root, _, files in os.walk(new_branch_folder):
-        relative_path = os.path.relpath(root, new_branch_folder)
+def compare_and_update(other_branch_folder, main_branch_folder):
+    for root, _, files in os.walk(other_branch_folder):
+        relative_path = os.path.relpath(root, other_branch_folder)
         main_folder = os.path.join(main_branch_folder, relative_path)
         
         for file in files:
@@ -15,10 +15,10 @@ def compare_and_update(new_branch_folder, main_branch_folder):
                 print(f"Updated {main_file_path}")
                 
 def main():
-    new_branch_folder = "path/to/new-branch"
+    new_branch_folder = "path/to/other-branch"
     main_branch_folder = "path/to/main-branch"
     
-    compare_and_update(new_branch_folder, main_branch_folder)
+    compare_and_update(other_branch_folder, main_branch_folder)
 
 if __name__ == "__main__":
     main()
