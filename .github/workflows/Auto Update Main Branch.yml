@@ -3,7 +3,7 @@ name: Auto Update Main Branch
 on:
   push:
     branches:
-      - new-branch
+      - other-branch
 
 jobs:
   update_main_branch:
