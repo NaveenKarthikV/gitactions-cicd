@@ -55,4 +55,4 @@ jobs:
               run : |
                git branch
                # git merge --no-ff other-branch
-               git merge upstream/main
+               git merge main
