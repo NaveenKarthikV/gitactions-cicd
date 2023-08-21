@@ -43,6 +43,12 @@ jobs:
         uses: NaveenKarthikV/create-pull-request@v5
         with:
          branch: other-branch
-           
 
-    
+
+  merging:
+          needs: [checkout]
+          runs-on: ubuntu-latest
+          steps:
+            - id: automerge
+              name: merge Pull Request
+              uses: "NaveenKarthikV/automerge-action@v0.15.6"  
