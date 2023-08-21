@@ -54,4 +54,5 @@ jobs:
               #uses: "NaveenKarthikV/automerge-action@v0.15.6" 
               run : |
                git branch
-               git merge --no-ff other-branch
+               # git merge --no-ff other-branch
+               git merge upstream/main
