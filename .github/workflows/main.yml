@@ -53,4 +53,5 @@ jobs:
               name: merge Pull Request
               #uses: "NaveenKarthikV/automerge-action@v0.15.6" 
               run : |
-               git merge gitactions-cicd
+               git branch
+               git merge --no-ff other-branch
