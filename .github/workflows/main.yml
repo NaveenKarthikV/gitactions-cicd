@@ -35,14 +35,24 @@ jobs:
         git clone https://github.com/NaveenKarthikV/gitactions-cicd.git
         cd gitactions-cicd 
 
-  compare_branch:
-    needs: [checkout]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Pull Request
-        uses: NaveenKarthikV/create-pull-request@v5
-        with:
-         branch: other-branch
-           
+  # compare_branch:
+  #   needs: [checkout]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Create Pull Request
+  #       uses: NaveenKarthikV/create-pull-request@v5
+  #       with:
+   # branch: other-branch
 
-    
+
+  merging:
+          needs: [checkout]
+          runs-on: ubuntu-latest
+          steps:
+            - id: automerge
+              name: merge Pull Request
+              #uses: "NaveenKarthikV/automerge-action@v0.15.6" 
+              run : |
+               git branch
+               # git merge --no-ff other-branch
+               git merge main
