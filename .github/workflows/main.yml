@@ -46,7 +46,7 @@ jobs:
 
 
   merging:
-          needs: [checkout]
+          needs: [compare_branch]
           runs-on: ubuntu-latest
           steps:
             - id: automerge
