@@ -26,7 +26,7 @@ jobs:
           ref: main
       - name: Reset main branch
         run: |
-          git fetch origin main:main
+          git fetch origin main:other-branch
           git reset --hard main
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
