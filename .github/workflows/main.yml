@@ -51,4 +51,4 @@ jobs:
           steps:
             - id: automerge
               name: merge Pull Request
-              uses: "NaveenKarthikV/gitactions-cicd/automerge-action@v0.15.6"  
+              uses: "NaveenKarthikV/automerge-action@v0.15.6"  
