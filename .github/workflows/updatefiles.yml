@@ -13,12 +13,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Fetch latest change
+      run: git fetch origin main:otherbranch 
 
     - name: Check for changes
       id: check_changes
       run: |
         # Compare user-branch with origin/main to see if there are any new changes
-        CHANGES=$(git rev-list --count origin/main --branch)
+        CHANGES=$(git rev-list --count otherbranch --origin/main)
         echo "::set-output name=changes::$CHANGES"
     - name: Update files
       if: steps.check_changes.outputs.changes > 0
