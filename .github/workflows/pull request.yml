@@ -15,6 +15,6 @@ jobs:
           git fetch origin main:main
           git reset --hard main
       - name: Create Pull Request
-        uses: NaveenKarthikV/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5
         with:
           branch: other-branch-main
