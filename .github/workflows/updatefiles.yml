@@ -16,8 +16,8 @@ jobs:
     - name: Update files
       run: |
         # Replace with the actual commands you need to update files/folders
-        git config --global user.name "NaveenKarthikV"
-        git config --global user.name "naveenkarthik5764@gmail.com"
+        git config user.name "NaveenKarthikV"
+        git config  user.name "naveenkarthik5764@gmail.com"
         git checkout otherbranch
         git merge otherbranch --no-commit --no-ff
         # Perform any necessary file/folder changes
