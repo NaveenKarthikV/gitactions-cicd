@@ -18,7 +18,7 @@ jobs:
       id: check_changes
       run: |
         # Compare user-branch with origin/main to see if there are any new changes
-        CHANGES=$(git rev-list --count otherbranch --origin/main)
+        CHANGES=git rev-list --count origin/main..$(git branch --show-current)
         echo "::set-output name=changes::$CHANGES"
     - name: Update files
       if: steps.check_changes.outputs.changes > 0
