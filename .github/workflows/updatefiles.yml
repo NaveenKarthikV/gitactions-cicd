@@ -1,14 +1,24 @@
-name: Update files 
+name: Auto Update Workflow
 
 on:
-  push: 
-    branches: 
+  push:
+    branches:
       - otherbranch
-jobs: 
-  update-files: 
-    runs-on: ubuntu-latest 
-    steps: 
-      - uses: actions/checkout@v3 
-      - name: Update files
-        run: | 
-          echo "This script updates the files and folders in the main branch."
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Update files
+      run: |
+        # Replace with the actual commands you need to update files/folders
+        git config user.name "NaveenKarthikV"
+        git config user.email "naveenkarthik5764@gmail.com"
+        git checkout main
+        git merge otherbranch --no-commit --no-ff
+        # Perform any necessary file/folder changes
+        git commit -m "Auto-update files from otherbranch"
+        git push
