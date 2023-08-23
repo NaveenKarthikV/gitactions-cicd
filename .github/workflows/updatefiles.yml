@@ -3,7 +3,7 @@ name: Update files
 on:
   push: 
     branches: 
-      - o
+      - otherbranch
 jobs: 
   update-files: 
     runs-on: ubuntu-latest 
