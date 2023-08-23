@@ -40,14 +40,14 @@ jobs:
         gh auth login
         cd gitactions-cicd 
 
-  # compare_branch:
-  #   needs: [checkout]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Create Pull Request
-  #       uses: NaveenKarthikV/create-pull-request@v5
-  #       with:
-  #        branch: other-branch
+  compare_branch:
+     needs: [checkout]
+     runs-on: ubuntu-latest
+     steps:
+       - name: Create Pull Request
+         uses: NaveenKarthikV/create-pull-request@v5
+         with:
+          branch: other-branch
 
 
   merging:
