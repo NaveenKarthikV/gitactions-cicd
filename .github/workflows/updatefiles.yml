@@ -1,0 +1,14 @@
+name: Update files 
+
+on:
+  push: 
+    branches: 
+      - o
+jobs: 
+  update-files: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v3 
+      - name: Update files
+        run: | 
+          echo "This script updates the files and folders in the main branch."
