@@ -1,4 +1,4 @@
-name: Auto Update Workflow
+name: New Update Workflow
 
 on:
   workflow_dispatch:
