@@ -21,7 +21,7 @@ jobs:
     - name: Check for changes
       id: check_changes
       run: |
-        CHANGES=$(git log --pretty=oneline --abbrev-commit otherbranch..origin/main)
+        CHANGES=$(git log --pretty=oneline --abbrev-commit otherbranch...origin/main)
         echo "::set-output name=changes::$CHANGES"
 
     - name: Update files
