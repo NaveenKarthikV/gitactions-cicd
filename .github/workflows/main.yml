@@ -1,0 +1,23 @@
+name: Update mainbranch on changes to otherbranch
+on:
+  push:
+    branches:
+      - otherbranch
+
+jobs:
+  update-mainbranch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mainbranch
+        uses: actions/checkout@v3
+        with:
+          ref: mainbranch
+
+      - name: Pull changes from otherbranch
+        run: git pull origin otherbranch
+
+      - name: Merge changes into mainbranch
+        run: git merge otherbranch
+
+      - name: Push changes to mainbranch
+        run: git push origin mainbranch
