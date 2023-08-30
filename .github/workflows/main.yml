@@ -12,7 +12,7 @@ jobs:
       - name: Checkout mainbranch
         uses: actions/checkout@v3
         with:
-          ref: mainbranch
+          ref: main
 
       - name: Pull changes from otherbranch
         run: git pull origin otherbranch
@@ -21,4 +21,4 @@ jobs:
         run: git merge otherbranch
 
       - name: Push changes to mainbranch
-        run: git push origin mainbranch
+        run: git push origin main
