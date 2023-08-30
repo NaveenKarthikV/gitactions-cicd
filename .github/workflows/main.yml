@@ -1,5 +1,6 @@
 name: Update mainbranch on changes to otherbranch
 on:
+  workflow_dispatch:
   push:
     branches:
       - otherbranch
