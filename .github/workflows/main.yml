@@ -15,7 +15,7 @@ jobs:
           ref: main
 
       - name: Pull changes from otherbranch
-        run: git pull origin otherbranch
+        run: git pull origin/otherbranch
 
       - name: Merge changes into mainbranch
         run: git merge otherbranch
