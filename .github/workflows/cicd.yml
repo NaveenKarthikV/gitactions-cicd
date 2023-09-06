@@ -7,7 +7,8 @@ on:
       
   pull_request:
     branches:
-      - main      
+      - main 
+      - otherbranch
   workflow_dispatch:
 
 jobs:  
@@ -17,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2         
         with:
-          fetch-depth: 2   # 0 will get entire history  
+          fetch-depth: 2
         
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -42,30 +43,7 @@ jobs:
           echo ${{ steps.getfile.outputs.files }} 
        
 
-      - name: Move the files to temp directory
-        id: Movefiles    
-        run: |        
-          echo ${{ steps.Finddiff.outputs.fileswithdepth }}          
-          mkdir -p temp_dags/{utils,plugins,sql}
-          echo "Files with depth"
-          for changed_file in ${{ steps.Finddiff.outputs.fileswithdepth }}; do
-            file_path=$(dirname "${changed_file}")
-            file_name=$(basename "${changed_file}")
-            if [ "${file_path}" = "dags" ]; then
-                echo "in if loop:${file_path}."  
-                echo "in if loop:${file_name}."   
-              cp ${changed_file} temp_dags/  
-            else   
-              echo "OUT if loop:${file_path}."  
-              echo "OUT if loop:${file_name}."  
-              mkdir -p temp_dags/${file_path}  
-              cp ${changed_file} temp_dags/${file_path}  
-            fi
-          done
-          #cp utils/* temp_dags/utils/
-          #cp plugins/* temp_dags/plugins/
-          ls -R temp_dags/
-        
+     
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -85,7 +63,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Deploy to S3
-        run: |
-          pip install boto3
-          # python upolad_dags_to_s3.py
