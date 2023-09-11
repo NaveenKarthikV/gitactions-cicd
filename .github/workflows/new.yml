@@ -7,7 +7,6 @@ on:
       - 'folder1/**'
       - 'folder2/**'
       - 'sql/**'
-  # move code only when there is pull request into QA Branch.
   pull_request:
     branches:
       - otherbranch  
