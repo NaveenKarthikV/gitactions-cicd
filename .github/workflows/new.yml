@@ -4,15 +4,15 @@ on:
     branches:
       - main
     paths:
-      - 'folder1/**'
-      - 'folder2/**'
+      - 'newsql/**'
+      - 'python/**'
       - 'sql/**'
   pull_request:
     branches:
       - otherbranch  
     paths:
-    - 'dags/**'
-    - 'utils/**'
+    - 'newsql/**'
+    - 'python/**'
     - 'sql/**' 
 
   workflow_dispatch:
