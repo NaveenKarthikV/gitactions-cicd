@@ -1,4 +1,4 @@
-name: Compare the branches
+name: Main Compare the branches
 
 on:
   push:
