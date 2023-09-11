@@ -1,4 +1,4 @@
-name: Move-Code-To-Deploy-DEV
+name: Compare the branches
 on:
   push: 
     branches:
