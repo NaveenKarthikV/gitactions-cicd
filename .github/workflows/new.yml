@@ -3,21 +3,20 @@ on:
   push: 
     branches:
       - main
+      - otherbranch
     paths:
-      - 'folder1/**'
-      - 'folder2/**'
+      - 'newsql/**'
+      - 'python/**'
       - 'sql/**'
   pull_request:
     branches:
       - otherbranch  
     paths:
-    - 'dags/**'
-    - 'utils/**'
+    - 'newsql/**'
+    - 'python/**'
     - 'sql/**' 
 
   workflow_dispatch:
-
- 
 
 jobs:  
    Compare_the_branches:    
@@ -26,7 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3         
         with:
-          fetch-depth: 2    
+          fetch-depth: 0    
 
       - name: check the Difference
         id: Finddiff        
@@ -43,60 +42,24 @@ jobs:
 
       - name: Move the files to temp directory
         id: Movefiles    
-        run:  |        
-          echo "Files in previous versus current version: ${{ steps.Finddiff.outputs.fileswithdepth }} "    
-          echo "Files modified in current check in: ${{steps.files.outputs.added_modified}} "
-          mkdir -p temp_dags/{utils,plugins,sql}  
-          myarray="${{ steps.Finddiff.outputs.fileswithdepth }}"
-          changelist=(${myarray// / })
-          len=${#changelist[@]}
-          echo "${myarray} has ${len} elements"    
-          for ((i=0; i<${len}; i++)) ; do
-            case "${changelist[$i]}" in
-              A | M | C | T | "R100" )
-                if [ "${changelist[$i]}" = "R100" ]; then  
-                  change_file="${changelist[$i+2]}"
-                  file_path=$(dirname "${changelist[$i+2]}")
-                  file_name=$(basename "${changelist[$i+2]}")
-                else
-                  change_file="${changelist[$i+1]}"
-                  file_path=$(dirname "${changelist[$i+1]}")
-                  file_name=$(basename "${changelist[$i+1]}") 
-                fi
-                 IFS='/'
-                read -a root <<< "${file_path}"
-                # root="${file_path##*/}"
-                echo "${file_path} and ${file_name} with root as ${root[0]}"
-                case  "${root[0]}" in 
-                  "dags") 
-                    echo "  > DAG loop:${file_path}/${file_name}."   
-                    cp "${change_file}" temp_dags/ 
-                    ;;
-                  sql |  utils) 
-                    echo "  > OUT loop:${file_path}/${file_name}." 
-                    mkdir -p temp_dags/${file_path}  
-                    cp --parents "${change_file}" "temp_dags"   
-                    echo "file temp_dags/${file_path}  created"
-                    ;; 
-                esac
-                ;;
-              R | D)
-                echo "-- ${changelist[$i+1]} no action done. "
-                ;;
-              esac
+        run: |        
+          echo ${{ steps.Finddiff.outputs.fileswithdepth }}          
+          mkdir -p temp_dags/{newsql,python,sql}
+          for changed_file in ${{ steps.Finddiff.outputs.fileswithdepth }}; do
+            file_path=$(dirname "${changed_file}")
+            file_name=$(basename "${changed_file}")
+            if [ "${file_path}" = "dags" ]; then
+                echo "in if loop:${file_path}."  
+                echo "in if loop:${file_name}."   
+              cp ${changed_file} temp_dags/  
+            else   
+              echo "OUT if loop:${file_path}."  
+              echo "OUT if loop:${file_name}."  
+              mkdir -p temp_dags/${file_path}  
+              cp ${changed_file} temp_dags/${file_path}  
+            fi
           done
-
-          #cp utils/* temp_dags/utils/
-          #cp plugins/* temp_dags/plugins/
           ls -R temp_dags/
-          cd temp_dags
-
-
-
-
-
-
-
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
