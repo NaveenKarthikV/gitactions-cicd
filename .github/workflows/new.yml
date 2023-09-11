@@ -28,8 +28,8 @@ jobs:
           fetch-depth: 0    
 
       - name: check the Difference
-        id: Finddiff        
-        run:  echo "::set-output name=fileswithdepth::$(git diff --name-status ${{ github.event.before }} ${{ github.sha }} | xargs)"           
+        id: check        
+        run:  echo "::set-output name=files::$(git diff --name-status ${{ github.event.before }} ${{ github.sha }} | xargs)"           
         shell: bash
         
       - name: Changed files
@@ -43,9 +43,9 @@ jobs:
       - name: Move the files to temp directory
         id: Movefiles    
         run: |        
-          echo ${{ steps.Finddiff.outputs.fileswithdepth }}          
+          echo ${{ steps.check.outputs.files }}          
           mkdir -p temp_dags/{newsql,python,sql}
-          for changed_file in ${{ steps.Finddiff.outputs.fileswithdepth }}; do
+          for changed_file in ${{ steps.check.outputs.files }}; do
             file_path=$(dirname "${changed_file}")
             file_name=$(basename "${changed_file}")
             if [ "${file_path}" = "dags" ]; then
