@@ -21,7 +21,7 @@ on:
  
 
 jobs:  
-   Move-Code-To-Deploy-DEV:    
+   Compare_the_branches:    
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
