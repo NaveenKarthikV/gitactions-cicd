@@ -3,6 +3,7 @@ on:
   push: 
     branches:
       - main
+      - otherbranch
     paths:
       - 'newsql/**'
       - 'python/**'
