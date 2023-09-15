@@ -1,7 +1,5 @@
 
 newsqlfile1....
-newfile
-=======
-newsqlfile1
+
 .
 
